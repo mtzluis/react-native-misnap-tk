@@ -21,6 +21,7 @@ Due the issue with pod & asset catalogs https://github.com/CocoaPods/CocoaPods/i
 
 1. Open ios/Podfile and insert :  `pod 'RNMisnap', :path => '../node_modules/react-native-misnap'`
 2. Due the issue with pod & asset catalogs https://github.com/CocoaPods/CocoaPods/issues/8122, you need to add graphical resources into iOS project. Simply drag: `=Include-resources_in_mainproject=/ios_drag_to_xcode/react-native-misnap` folder into your xcode project root folder. All resources are graphical resources that will be bundled directy in app bundle.
+2. Add camera permission in info.plis
 
 #### Android
 
