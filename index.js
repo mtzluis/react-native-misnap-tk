@@ -3,8 +3,8 @@ import { NativeModules } from 'react-native';
 const { RNMisnap } = NativeModules;
 
 export default {
-  greet():Promise<string> {
-    return RNMisnap.greet();
+  greet(config):Promise<string> {
+    return RNMisnap.greet(config);
   },
 
   capture(config) {
