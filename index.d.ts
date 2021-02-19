@@ -12,11 +12,10 @@ declare module 'react-native-misnap' {
 
   const defaultConfig: MiSnapConfig = {
     captureType: 'idFront',
-    autocapture: true,
   };
 
   export default class MiSnapManager {
-    static greet(): Promise<string>;
+    static greet(config): Promise<string>;
 
     static capture(config: MiSnapConfig = defaultConfig): Promise<MiSnapResult>;
   }
