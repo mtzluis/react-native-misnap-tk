@@ -34,7 +34,7 @@
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(checkEmail: (NSDictionary *)config
+RCT_EXPORT_METHOD(greet: (NSDictionary *)config
     resolver:(RCTPromiseResolveBlock)resolve
     rejecter:(RCTPromiseRejectBlock)reject)
 {
