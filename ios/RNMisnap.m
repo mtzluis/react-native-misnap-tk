@@ -38,17 +38,18 @@ RCT_EXPORT_METHOD(greet: (NSDictionary *)config
     resolver:(RCTPromiseResolveBlock)resolve
     rejecter:(RCTPromiseRejectBlock)reject)
 {
-    NSString *greetText = @"HELLO FROM IOS NATIVE CODE";
+    NSString *greetText = @"HELLO FROM IOS NATIVE CODE 2";
     NSLog(@"%@",greetText);
     cResolver = resolve;
     cRejecter = reject;
 
     NSLog( @"%@", config );
     if ([config[@"captureType"] isEqualToString:@"idFront"]) {
-      self.selectedJobType = kMiSnapDocumentTypeCheckFront;
-    } else {
-      self.selectedJobType = kMiSnapDocumentTypeCheckBack;
-    }
+        self.selectedJobType = kMiSnapDocumentTypeCheckFront;
+      } else if ([config[@"captureType"] isEqualToString:@"idBack"]) {
+        self.selectedJobType = kMiSnapDocumentTypeCheckBack;
+      }
+  
     // Do any additional setup after loading the view from its nib.
   self.miSnapController = (MiSnapSDKViewController *)[[UIStoryboard storyboardWithName:@"MiSnapUX2" bundle:nil] instantiateViewControllerWithIdentifier:@"MiSnapSDKViewControllerUX2"];
 
@@ -105,8 +106,8 @@ RCT_EXPORT_METHOD(greet: (NSDictionary *)config
         parameters = [NSMutableDictionary dictionaryWithDictionary:[MiSnapSDKViewController defaultParametersForCheckFront]];
         [parameters setObject:@"ID Card Front" forKey:kMiSnapShortDescription];
         [parameters setObject:@"0" forKey:kMiSnapTorchMode];
-    } else if ([self.selectedJobType isEqualToString:kMiSnapDocumentTypeIdCardBack]) { //@"ID_CARD_FRONT"
-        parameters = [NSMutableDictionary dictionaryWithDictionary:[MiSnapSDKViewController defaultParametersForIdCardBack]];
+    } else if ([self.selectedJobType isEqualToString:kMiSnapDocumentTypeCheckBack]) { //@"ID_CARD_FRONT"
+        parameters = [NSMutableDictionary dictionaryWithDictionary:[MiSnapSDKViewController defaultParametersForCheckBack]];
         [parameters setObject:@"ID Card Back" forKey:kMiSnapShortDescription];
         [parameters setObject:@"0" forKey:kMiSnapTorchMode];
     }
