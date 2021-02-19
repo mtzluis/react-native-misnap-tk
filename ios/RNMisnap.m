@@ -18,7 +18,6 @@
 @interface RNMisnap () <MiSnapViewControllerDelegate>
 
 // MiSnap
-@property (nonatomic, strong) NSDictionary *config;
 @property (nonatomic, strong) MiSnapSDKViewController *miSnapController;
 @property (nonatomic, strong) NSString *selectedJobType;
 @property (strong, nonatomic) MiSnapLivenessCaptureParameters *captureParams;
@@ -35,18 +34,26 @@
 
 RCT_EXPORT_MODULE()
 
-RCT_REMAP_METHOD(greet, resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+RCT_EXPORT_METHOD(checkEmail: (NSDictionary *)config
+    resolver:(RCTPromiseResolveBlock)resolve
+    rejecter:(RCTPromiseRejectBlock)reject)
+{
     NSString *greetText = @"HELLO FROM IOS NATIVE CODE";
     NSLog(@"%@",greetText);
     cResolver = resolve;
     cRejecter = reject;
-  
-  self.selectedJobType = kMiSnapDocumentTypeCheckFront;
+
+    NSLog( @"%@", config );
+    if ([config[@"captureType"] isEqualToString:@"idFront"]) {
+      self.selectedJobType = kMiSnapDocumentTypeCheckFront;
+    } else {
+      self.selectedJobType = kMiSnapDocumentTypeCheckBack;
+    }
     // Do any additional setup after loading the view from its nib.
   self.miSnapController = (MiSnapSDKViewController *)[[UIStoryboard storyboardWithName:@"MiSnapUX2" bundle:nil] instantiateViewControllerWithIdentifier:@"MiSnapSDKViewControllerUX2"];
-  
+
   self.miSnapController.delegate = self;
-  [self.miSnapController setupMiSnapWithParams:[self getMiSnapParameters:_config]];
+    [self.miSnapController setupMiSnapWithParams:[self getMiSnapParameters:config]];
       self.miSnapController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
   if (self.miSnapController != nil) {
           dispatch_async(dispatch_get_main_queue(), ^{
