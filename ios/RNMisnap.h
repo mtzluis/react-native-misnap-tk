@@ -15,6 +15,7 @@
 }
 
 // Configuration properties.
+@property (nonatomic, strong) NSDictionary *config;
 
 
 // Current capture position.
@@ -22,4 +23,3 @@
 @property (nonatomic, strong) UIImage *miSnapImage;
 
 @end
-  
