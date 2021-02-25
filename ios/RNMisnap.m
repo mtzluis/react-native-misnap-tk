@@ -38,6 +38,9 @@ RCT_EXPORT_METHOD(greet: (NSDictionary *)config
     resolver:(RCTPromiseResolveBlock)resolve
     rejecter:(RCTPromiseRejectBlock)reject)
 {
+    [[UIDevice currentDevice] setValue:
+                          [NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight]
+                                forKey:@"orientation"];
     NSString *greetText = @"HELLO FROM IOS NATIVE CODE 2";
     NSLog(@"%@",greetText);
     cResolver = resolve;
@@ -83,6 +86,9 @@ RCT_EXPORT_METHOD(greet: (NSDictionary *)config
     NSMutableDictionary *resultDic = [[NSMutableDictionary alloc] init];
     NSString *greetText = @"cancel";
     resultDic[@"status"] = greetText;
+    [[UIDevice currentDevice] setValue:
+                          [NSNumber numberWithInteger: UIInterfaceOrientationPortrait]
+                                forKey:@"orientation"];
     cResolver(resultDic);
 }
 
