@@ -74,6 +74,18 @@ RCT_EXPORT_METHOD(greet: (NSDictionary *)config
 
 #pragma mark - <MiSnapViewControllerDelegate>
 
+
+-(void)miSnapCancelledWithResults:(NSDictionary *)results
+{
+    NSMutableDictionary* mibiDataAndImages= [[NSMutableDictionary alloc]init];
+    [mibiDataAndImages setObject:@"Cancelled" forKey:@"MiSnapPluginResultCode"];
+    
+    NSMutableDictionary *resultDic = [[NSMutableDictionary alloc] init];
+    NSString *greetText = @"cancel";
+    resultDic[@"status"] = greetText;
+    cResolver(resultDic);
+}
+
 // Called when an image has been captured in either automatic or manual mode
 - (void)miSnapFinishedReturningEncodedImage:(NSString *)encodedImage originalImage:(UIImage *)originalImage andResults:(NSDictionary *)results
 {
