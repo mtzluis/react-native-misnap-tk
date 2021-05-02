@@ -67,7 +67,7 @@ public class RNMisnapModule extends ReactContextBaseJavaModule implements Activi
 
   @ReactMethod
   public void capture(ReadableMap config, Promise promise) {
-     Activity currentActivity = getCurrentActivity();
+    Activity currentActivity = getCurrentActivity();
     currentPromise = promise;
 
     String captureType = config.hasKey("captureType") ?
@@ -89,7 +89,8 @@ public class RNMisnapModule extends ReactContextBaseJavaModule implements Activi
       JSONObject misnapParams = new JSONObject();
       
       try {
-        misnapParams.put(MiSnapApi.MiSnapDocumentType, (captureType.equals("idFront")) ? MiSnapApi.PARAMETER_DOCTYPE_ID_CARD_FRONT : MiSnapApi.PARAMETER_DOCTYPE_ID_CARD_BACK);
+        Log.e("tekchoice", "cheques");
+        misnapParams.put(MiSnapApi.MiSnapDocumentType, (captureType.equals("idFront")) ? MiSnapApi.PARAMETER_DOCTYPE_CHECK_FRONT : MiSnapApi.PARAMETER_DOCTYPE_CHECK_BACK);
         // External parameters
         misnapParams.put(ScienceApi.MiSnapNoGlare, glare );
         misnapParams.put(ScienceApi.MiSnapContrast, contrast );
@@ -98,7 +99,8 @@ public class RNMisnapModule extends ReactContextBaseJavaModule implements Activi
         // Other Parameters
         misnapParams.put(CameraApi.MiSnapAllowScreenshots, 1);
         misnapParams.put(CameraApi.MiSnapFocusMode, CameraApi.PARAMETER_FOCUS_MODE_HYBRID);
-        misnapParams.put(MiSnapApi.MiSnapOrientation, 2);
+        misnapParams.put(MiSnapApi.MiSnapOrientation, 0);
+        misnapParams.put(CameraApi.MiSnapTorchMode, 0);
       } catch (JSONException exception) {
         exception.printStackTrace();
       }
