@@ -130,7 +130,7 @@ RCT_EXPORT_METHOD(capture:(NSDictionary *)config resolver:(RCTPromiseResolveBloc
     
     // LanguageOverride forces only English "en". Uncomment this to enforce just English localization.
     // [parameters setObject:@"es" forKey:@"LanguageOverride"];
-    [parameters setObject:@"90000" forKey:kMiSnapTimeout];
+    [parameters setObject:@"25000" forKey:kMiSnapTimeout];
     [parameters setObject:@"2" forKey:kMiSnapMaxCaptures]; // Shows how to set 3 rather than default 5
     
     if (options[@"autocapture"] == NO) {
